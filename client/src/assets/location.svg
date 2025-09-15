@@ -1,0 +1,11 @@
+<svg width="1440" height="750" viewBox="0 0 1440 750" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1440" height="750" fill="white"></rect>
+  <g transform="translate(720,375)">
+    <!-- Outer pin shape -->
+    <path d="M0 -280C-120 -280 -220 -180 -220 -60C-220 100 0 280 0 280C0 280 220 100 220 -60C220 -180 120 -280 0 -280Z" fill="#FF4D4D"></path>
+    <!-- Inner circle -->
+    <circle cx="0" cy="-60" r="80" fill="white"></circle>
+    <!-- Inner small circle -->
+    <circle cx="0" cy="-60" r="40" fill="#FF4D4D"></circle>
+  </g>
+</svg>
