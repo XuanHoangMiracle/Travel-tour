@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link,useNavigate, useLocation } from 'react-router-dom';
 import { assets } from '../assets/assets';
 import { useClerk, useUser,UserButton } from '@clerk/clerk-react';
@@ -16,21 +16,30 @@ const Navbar = () => {
         { name: 'About', path: '/' },
     ];
 
-    const [isScrolled, setIsScrolled] = React.useState(false);
-    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const {openSignIn} = useClerk()
     const {user} = useUser()
     const navigate = useNavigate()
     const location = useLocation()
 
-    React.useEffect(() => {
+    useEffect(() => {
+
+        if(location.pathname !== '/'){
+            setIsScrolled(true);
+            return;
+        }else{
+            setIsScrolled(false);
+        }
+        setIsScrolled(prev => location.pathname !== '/' ? true : prev);
+
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 10);
         };
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    }, [location.pathname]);
 
     return (
             <nav className={`fixed top-0 left-0 bg-amber-400 w-full flex items-center justify-between px-4 md:px-16 lg:px-24 xl:px-32 transition-all duration-500 z-50 ${isScrolled ? "bg-white/80 shadow-md text-gray-700 backdrop-blur-lg py-3 md:py-4" : "py-4 md:py-6"}`}>
@@ -48,7 +57,8 @@ const Navbar = () => {
                             <div className={`${isScrolled ? "bg-gray-700" : "bg-white"} h-0.5 w-0 group-hover:w-full transition-all duration-300`} />
                         </a>
                     ))}
-                    <button className={`border px-4 py-1 text-sm font-light rounded-full cursor-pointer ${isScrolled ? 'text-black' : 'text-white'} transition-all`}>
+                    <button className={`border px-4 py-1 text-sm font-light rounded-full cursor-pointer ${isScrolled ? 'text-black' : 'text-white'} transition-all`} onClick={() => 
+                        navigate('/owner')}>
                         Dashboard
                     </button>
                 </div>
@@ -71,7 +81,11 @@ const Navbar = () => {
                 </div>
 
                 {/* Mobile Menu Button */}
-                <div className="flex items-center gap-3 md:hidden">
+                <div className="flex items-center gap-3 md:hidden" >{user && <UserButton>
+                        <UserButton.MenuItems>
+                            <UserButton.Action label="My Tours" labelIcon={<BookIcon />} onClick={() => navigate('/my-tours')}/>
+                        </UserButton.MenuItems>
+                    </UserButton>}
                     <img onClick={()=> setIsMenuOpen(!isMenuOpen)} src={assets.menuIcon} alt="" className={`${isScrolled && "invert"} h-4`}/>
                 </div>
 
@@ -87,13 +101,14 @@ const Navbar = () => {
                         </a>
                     ))}
 
-                    <button className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all">
+                    {user && <button className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all" onClick={() => 
+                        navigate('/owner')}>
                         Dashboard
-                    </button>
+                    </button>}
 
-                    <button onClick={openSignIn} className="bg-black text-white px-8 py-2.5 rounded-full transition-all duration-500">
+                    {!user && <button onClick={openSignIn} className="bg-black text-white px-8 py-2.5 rounded-full transition-all duration-500">
                         Login
-                    </button>
+                    </button>}
                 </div>
             </nav>
     );
