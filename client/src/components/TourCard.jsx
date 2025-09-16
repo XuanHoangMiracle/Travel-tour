@@ -5,7 +5,7 @@ import { assets } from '../assets/assets'
 
 const TourCard = ({ room, index }) => {
   return (
-    <div>
+    <div className="bg-gradient-to-br from-amber-300/30 via-rose-300/20 to-fuchsia-300/20 p-[2px] rounded-2xl transition-all duration-300">
       <Link
         to={`/tours/${room.id}`}
         onClick={() => scrollTo(0, 0)}
@@ -37,7 +37,7 @@ const TourCard = ({ room, index }) => {
               {room.pricePerNight}
               <span className="ml-1">vnd</span>
             </p>
-            <button className="px-4 py-2 text-sm font-medium border border-gray-300 rounded hover:bg-gray-50 transition-all">
+            <button className="px-4 py-2 text-gray-500 font-medium border border-b-black rounded hover:bg-gray-300 transition-all">
               Đặt ngay
             </button>
           </div>
@@ -46,5 +46,4 @@ const TourCard = ({ room, index }) => {
     </div>
   )
 }
-
 export default TourCard
