@@ -37,7 +37,7 @@ const TourCard = ({ room, index }) => {
               {room.pricePerNight}
               <span className="ml-1">vnd</span>
             </p>
-            <button className="px-4 py-2 text-gray-500 font-medium border border-b-black rounded hover:bg-gray-300 transition-all">
+            <button className="px-4 py-2 text-gray-500 cursor-pointer font-medium border border-b-black rounded hover:bg-gray-300 transition-all">
               Đặt ngay
             </button>
           </div>
