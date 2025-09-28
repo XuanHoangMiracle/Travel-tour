@@ -20,8 +20,8 @@ const Footer = () => {
                     <a href="/" className="font-medium text-black hover:text-black transition-all">
                         Home
                     </a>
-                    <a href="/support" className="font-medium text-black hover:text-black transition-all">
-                        Hỗ trợ
+                    <a href="/about" className="font-medium text-black hover:text-black transition-all">
+                        Giới thiệu
                     </a>
                     <a href="/datve" className="font-medium text-black hover:text-black transition-all">
                         Dịch vụ
