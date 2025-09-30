@@ -71,13 +71,13 @@ const Hero = () => {
             <div>
                 <div className='flex md:flex-col max-md:gap-2 max-md:items-center'>
                 <label htmlFor="days">Số Ngày</label>
-                <input min={1} max={30} id="days" type="number" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none max-w-16" placeholder="0" />
+                <input min={1} max={30} id="days" type="number" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none max-w-16" placeholder="1"  defaultValue={1}   />
             </div>
             </div>
 
             <div className='flex md:flex-col max-md:gap-2 max-md:items-center'>
                 <label htmlFor="guests">Số khách</label>
-                <input min={1} max={20} id="guests" type="number" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none max-w-16" placeholder="0" />
+                <input min={1} max={20} id="guests" type="number" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none max-w-16" placeholder="0"  defaultValue={1}   />
             </div>
 
             <button className='flex items-center justify-center gap-1 rounded-md bg-black py-3 px-4 text-white my-auto cursor-pointer max-md:w-full max-md:py-1' >

@@ -13,7 +13,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Tours', path: '/tours' },
-    { name: 'Experience', path: '/' },
+    { name: 'Liên hệ', path: '/contact' },
     { name: 'Về chúng tôi', path: '/about' },
   ];
 
@@ -55,7 +55,7 @@ const Navbar = () => {
         {user ? (
           <UserButton>
             <UserButton.MenuItems>
-              <UserButton.Action label="My Tours" labelIcon={<BookIcon />} onClick={() => navigate('/my-tours')} />
+              <UserButton.Action label="My Tours" labelIcon={<BookIcon />} onClick={() => navigate('/mybookings')} />
             </UserButton.MenuItems>
           </UserButton>
         ) : (
@@ -73,7 +73,7 @@ const Navbar = () => {
         {user && (
           <UserButton>
             <UserButton.MenuItems>
-              <UserButton.Action label="My Tours" labelIcon={<BookIcon />} onClick={() => navigate('/my-tours')} />
+              <UserButton.Action label="My Tours" labelIcon={<BookIcon />} onClick={() => navigate('/mybookings')} />
             </UserButton.MenuItems>
           </UserButton>
         )}

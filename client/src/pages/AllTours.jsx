@@ -26,7 +26,7 @@ const AllTours = () => {
     const [openFilters, setOpenFilters] = React.useState(false);
 
 
-    const roomTypes = ["Single", "Double", "Luxury", "Suite"];
+    const roomTypes = ['Tất cả','Miền BẮc','Miền Trung','Miền Nam'];
     const priceRanges = ['500.000 - 1.000.000', '1.000.000 - 2.000.000', '2.000.000 - 3.000.000', '3.000.000+'];
     const sortOptions = ['Giá: Từ thấp đến cao', 'Giá: Từ cao đến thấp', 'mới nhất'];
   return (
@@ -45,7 +45,7 @@ const AllTours = () => {
                     src={room.images[0]} alt="tour-img" title='Chi tiết phòng' 
                     className='max-h-65 md:w-1/2 rounded-xl shadow-lg object-cover cursor-pointer'/>
                     <div className='md:w-1/2 flex flex-col gap-2'>
-                        <p className='text-gray-500'>{room.hotel.city}</p>
+                        <p className='flex items-center gap-2 text-gray-500"'><img src={assets.location} alt="Location" className='h-4'/>{room.hotel.city}</p>
                         <p  onClick={() => {navigate(`/tours/${room._id}`),scrollTo(0,0)}}
                         className='text-gray-800 text-3xl font-playfair cursor-pointer'>{room.hotel.name}</p>
                         <div className='flex items-center'>

@@ -71,22 +71,29 @@ const handleSubmitReview = (e) => {
       </div>
 
       {/* Room images */}
-      <div className='flex flex-col lg:flex-row mt-6 gap-6'>
-        <div className='lg:w-1/2 w-full '>
-          <img src={mainImage} alt="Tour Image" className='w-full rounded-xl shadow-lg object-cover' />
-        </div>
-        <div className='grid grid-cols-2 gap-4 lg:w-1/2 w-full'>
-          {tour?.images.length > 1 && tour.images.map((image, index) => (
-            <img
-              onClick={() => setMainImage(image)}
-              key={index}
-              src={image}
-              alt='Tour Image'
-              className={`w-full rounded-xl shadow-lg object-cover cursor-pointer ${mainImage === image && 'outline-2 outline-orange-500'}`}
-            />
-          ))}
-        </div>
-      </div>
+<div className='flex flex-col lg:flex-row mt-6 gap-6'>
+  <div className='lg:w-1/2 w-full '>
+    <img
+      src={mainImage}
+      alt="Tour Image"
+      className='w-full block rounded-xl shadow-lg object-cover aspect-[16/10]'
+    />
+  </div>
+
+  <div className='grid grid-cols-2 gap-4 lg:w-1/2 w-full'>
+    {tour?.images.length > 1 && tour.images.map((image, index) => (
+      <img
+        onClick={() => setMainImage(image)}
+        key={index}
+        src={image}
+        alt='Tour Image'
+        className={`w-full block rounded-xl shadow-lg object-cover cursor-pointer aspect-[16/10]
+          ${mainImage === image ? 'outline outline-2 outline-orange-500 outline-offset-2' : ''}`}
+      />
+    ))}
+  </div>
+</div>
+
 
       {/* Room highlight */}
       <div className='flex flex-col md:flex-row md:justify-between mt-6 gap-4 mt-10'>
@@ -123,7 +130,7 @@ const handleSubmitReview = (e) => {
           </label>
           <input id="guests" type="number" min={1} max={20} placeholder="0"
             className="mt-1.5 w-full md:w-40 h-11 rounded-lg border border-gray-300
-            px-3 outline-none text-gray-700" required />
+            px-3 outline-none text-gray-700"  defaultValue={1}    required />
         </div>
         <button
           type="submit"
