@@ -12,7 +12,7 @@ const TourCard = ({ room, index }) => {
         className="group block rounded-xl overflow-hidden bg-white text-gray-600 shadow-[0_3px_10px_rgba(0,0,0,0.06)] hover:shadow-[0_5px_14px_rgba(0,0,0,0.08)] transition"
       >
         {/* Chia khung theo tỷ lệ 6/4 bằng grid; đặt chiều cao cố định để tỷ lệ ổn định */}
-        <div className="grid grid-rows-[7fr_3fr] h-[360px] md:h-[380px]">
+        <div className="grid grid-rows-[7fr_4fr] h-[310px] md:h-[330px]">
 
           {/* Ảnh (6 phần) */}
           <div className="relative row-span-1">
@@ -31,12 +31,14 @@ const TourCard = ({ room, index }) => {
           {/* Thông tin (4 phần) */}
           <div className="row-span-1 p-3 flex flex-col">
             <div className="flex items-center justify-between gap-2">
-              <p className="font-playfair text-base font-semibold leading-tight line-clamp-1">
+              <p className="flex-1 min-w-0 font-playfair text-lg md:text-xl font-semibold leading-tight
+                whitespace-normal break-words line-clamp-4">
                 {room.hotel?.name}
               </p>
               <StarRating />
             </div>
             <div className="flex items-center justify-between gap-2">
+               <img src={assets.locationIcon} alt="location-icon" />
               <p className="flex-1 min-w-0 font-playfair text-base font-semibold leading-tight truncate">
                 {room.hotel?.city}
               </p>

@@ -3,23 +3,22 @@ import { assets, facilityIcons, roomsDummyData } from '../assets/assets'
 import { useNavigate } from 'react-router-dom';
 import StarRating from '../components/StarRating';
 
-const CheckBox = ({label,selected = false,onchange=()=>{}}) => {
+const CheckBox = ({label,selected = false,onChange=()=>{}}) => {
     return(
-        <label className='flex gap-3 items-center cursor-pointer mt-2 txxt-sm'>
+        <label className='flex gap-3 items-center cursor-pointer mt-2 text-sm'>
             <input type='checkbox' checked={selected}onChange={(e)=>onChange(e.target.checked,label)}/>
             <span className='font-light select-none'>{label}</span>
         </label>
     )
 }
-const RadioButton = ({label,selected = false,onchange=()=>{}}) => {
+const RadioButton = ({label,selected = false,onChange=()=>{}}) => {
     return(
-        <label className='flex gap-3 items-center cursor-pointer mt-2 txxt-sm'>
+        <label className='flex gap-3 items-center cursor-pointer mt-2 text-sm'>
             <input type='radio' name='sortOption' checked={selected} onChange={()=> onChange(label)}/>
             <span className='font-light select-none'>{label}</span>
         </label>
     )
 }
-
 
 const AllTours = () => {
     const navigate = useNavigate();
@@ -50,7 +49,7 @@ const AllTours = () => {
                         className='text-gray-800 text-3xl font-playfair cursor-pointer'>{room.hotel.name}</p>
                         <div className='flex items-center'>
                             <StarRating />
-                            <p className='m1-2'>200+ reviews</p>
+                            <p className='m1-2 ml-4'>200+ reviews</p>
                         </div>
                         <div className='flex items-center gap-1 text-gray-500 mt-2 text-sm'>
                             <img src={assets.locationIcon} alt="location-icon" />
@@ -87,7 +86,7 @@ const AllTours = () => {
                 <div className='px-5 pt-5'>
                     <p className='font-medium text-gray-800 pb-2'>Bộ lọc phổ biến</p>
                     {roomTypes.map((room,index)=>(
-                        <CheckBox key={index} label={room} />
+                        <RadioButton key={index} label={room} />
                     ))}
                 </div>
                 <div className='px-5 pt-5'>

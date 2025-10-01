@@ -13,6 +13,9 @@ import twitterIcon from './twitterIcon.svg'
 import linkendinIcon from './linkendinIcon.svg'
 import freeWifiIcon from './freeWifiIcon.svg'
 import freeBreakfastIcon from './freeBreakfastIcon.svg'
+import tauthuy from './Tauthuy.svg'
+import oto from './Oto.svg'
+import maybay from './Maybay.svg'
 import roomServiceIcon from './roomServiceIcon.svg'
 import mountainIcon from './mountainIcon.svg'
 import poolIcon from './poolIcon.svg'
@@ -57,6 +60,9 @@ export const assets = {
     freeWifiIcon,
     freeBreakfastIcon,
     roomServiceIcon,
+    tauthuy,
+    oto,
+    maybay,
     mountainIcon,
     poolIcon,
     closeIcon,
@@ -159,11 +165,14 @@ export const testimonials = [
 
 // Facility Icon
 export const facilityIcons = {
-    "Free WiFi": assets.freeWifiIcon,
-    "Free Breakfast": assets.freeBreakfastIcon,
-    "Room Service": assets.roomServiceIcon,
-    "Mountain View": assets.mountainIcon,
-    "Pool Access": assets.poolIcon,
+    "WiFi": assets.freeWifiIcon,
+    "Ăn sáng": assets.freeBreakfastIcon,
+    "Ăn uống": assets.roomServiceIcon,
+    "Leo núi": assets.mountainIcon,
+    "Hồ bơi": assets.poolIcon,
+    "Tàu thủy": assets.tauthuy,
+    "Máy bay": assets.maybay,
+    "Oto": assets.oto,
 };
 
 // For Room Details Page
@@ -192,7 +201,7 @@ export const userDummyData = {
 // Hotel Dummy Data
 export const hotelDummyData = {
     "_id": "67f76393197ac559e4089b72",
-    "name": "Tour du lịch Hội An",
+    "name": "Tour du lịch Hội An 7 ngày 3 đêm",
     "address": "Hội An, Đà Nẵng, Việt Nam",
     "contact": "+0123456789",
     "owner": userDummyData,
@@ -208,8 +217,9 @@ export const roomsDummyData = [
         "_id": "67f7647c197ac559e4089b96",
         "hotel": hotelDummyData,
         "roomType": "Miền Trung",
+        "tourLocation": "Hội An",
         "pricePerNight": 399,
-        "amenities": ["Room Service", "Mountain View", "Pool Access"],
+        "amenities": ["Ăn uống", "Leo núi", "Oto"],
         "images": [tourImg1, tourImg2, tourImg3, tourImg4],
         "isAvailable": true,
         "createdAt": "2025-04-10T06:26:04.013Z",
@@ -220,8 +230,9 @@ export const roomsDummyData = [
         "_id": "67f76452197ac559e4089b8e",
         "hotel": hotelDummyData,
         "roomType": "Miền Nam",
+        "tourLocation": "Hội An",
         "pricePerNight": 299,
-        "amenities": ["Room Service", "Mountain View", "Pool Access"],
+        "amenities": ["Ăn uống", "Leo núi",  "Máy bay"],
         "images": [tourImg2, tourImg3, tourImg4, tourImg1],
         "isAvailable": true,
         "createdAt": "2025-04-10T06:25:22.593Z",
@@ -232,8 +243,9 @@ export const roomsDummyData = [
         "_id": "67f76406197ac559e4089b82",
         "hotel": hotelDummyData,
         "roomType": "Miền Trung",
+        "tourLocation": "Hội An",
         "pricePerNight": 249,
-        "amenities": ["Free WiFi", "Free Breakfast", "Room Service"],
+        "amenities": ["WiFi", "Ăn sáng", "Máy bay"],
         "images": [tourImg3, tourImg4, tourImg1,tourImg2],
         "isAvailable": true,
         "createdAt": "2025-04-10T06:24:06.285Z",
@@ -244,8 +256,9 @@ export const roomsDummyData = [
         "_id": "67f763d8197ac559e4089b7a",
         "hotel": hotelDummyData,
         "roomType": "Miền Trung",
+        "tourLocation": "Hội An",
         "pricePerNight": 199,
-        "amenities": ["Free WiFi", "Room Service", "Pool Access"],
+        "amenities": ["WiFi", "Ăn uống","Tàu thủy"],
         "images": [tourImg4,tourImg1,tourImg2,tourImg3 ],
         "isAvailable": true,
         "createdAt": "2025-04-10T06:23:20.252Z",
