@@ -186,7 +186,7 @@ export const roomCommonData = [
 // User Dummy Data
 export const userDummyData = {
     "_id": "user_2unqyL4diJFP1E3pIBnasc7w8hP",
-    "username": "Great Stack",
+    "username": "Xuân Hoàng",
     "email": "user.greatstack@gmail.com",
     "image": "https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvdXBsb2FkZWQvaW1nXzJ2N2c5YVpSSEFVYVUxbmVYZ2JkSVVuWnFzWSJ9",
     "role": "hotelOwner",
@@ -217,6 +217,7 @@ export const roomsDummyData = [
         "_id": "67f7647c197ac559e4089b96",
         "hotel": hotelDummyData,
         "roomType": "Miền Trung",
+        "name" : "Du lịch Hội An",
         "tourLocation": "Hội An",
         "pricePerNight": 399,
         "amenities": ["Ăn uống", "Leo núi", "Oto"],
@@ -230,6 +231,7 @@ export const roomsDummyData = [
         "_id": "67f76452197ac559e4089b8e",
         "hotel": hotelDummyData,
         "roomType": "Miền Nam",
+        "name" : "Du lịch Huế",
         "tourLocation": "Hội An",
         "pricePerNight": 299,
         "amenities": ["Ăn uống", "Leo núi",  "Máy bay"],
@@ -243,6 +245,7 @@ export const roomsDummyData = [
         "_id": "67f76406197ac559e4089b82",
         "hotel": hotelDummyData,
         "roomType": "Miền Trung",
+        "name" : "Du lịch Đà Nẵng",
         "tourLocation": "Hội An",
         "pricePerNight": 249,
         "amenities": ["WiFi", "Ăn sáng", "Máy bay"],
@@ -257,7 +260,8 @@ export const roomsDummyData = [
         "hotel": hotelDummyData,
         "roomType": "Miền Trung",
         "tourLocation": "Hội An",
-        "pricePerNight": 199,
+        "name" : "Du lịch Nha Trang",
+        "pricePerNight": 19900000,
         "amenities": ["WiFi", "Ăn uống","Tàu thủy"],
         "images": [tourImg4,tourImg1,tourImg2,tourImg3 ],
         "isAvailable": true,
@@ -278,7 +282,7 @@ export const userBookingsDummyData = [
         "hotel": hotelDummyData,
         "checkInDate": "2025-04-30T00:00:00.000Z",
         "checkOutDate": "2025-05-01T00:00:00.000Z",
-        "totalPrice": 299,
+        "totalPrice": 2990000,
         "guests": 1,
         "status": "pending",
         "paymentMethod": "Stripe",
@@ -294,7 +298,7 @@ export const userBookingsDummyData = [
         "hotel": hotelDummyData,
         "checkInDate": "2025-04-27T00:00:00.000Z",
         "checkOutDate": "2025-04-28T00:00:00.000Z",
-        "totalPrice": 399,
+        "totalPrice": 20000000,
         "guests": 1,
         "status": "pending",
         "paymentMethod": "Pay At Hotel",
@@ -310,7 +314,7 @@ export const userBookingsDummyData = [
         "hotel": hotelDummyData,
         "checkInDate": "2025-04-11T00:00:00.000Z",
         "checkOutDate": "2025-04-12T00:00:00.000Z",
-        "totalPrice": 199,
+        "totalPrice": 10000000,
         "guests": 1,
         "status": "pending",
         "paymentMethod": "Pay At Hotel",
@@ -324,10 +328,10 @@ export const userBookingsDummyData = [
 // Dashboard Dummy Data
 export const dashboardDummyData = {
     "totalBookings": 3,
-    "totalRevenue": 897,
-    "bookings": userBookingsDummyData
+    "totalRevenue": 100000000,
+    "bookings": userBookingsDummyData,
+    "tour" : hotelDummyData
 }
-
 // --------- SVG code for Book Icon------
 /* 
 const BookIcon = ()=>(
