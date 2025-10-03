@@ -14,13 +14,14 @@ import AddTour from './pages/Dashboard/AddTour.jsx';
 import ListTour from './pages/Dashboard/ListTour.jsx';
 
 
+
 const App = () => {
 
-const isOwnerPath = useLocation().pathname.includes("admin");
+const isAdminpath = useLocation().pathname.includes("admin");
 
   return (
     <div>
-      {!isOwnerPath && <Navbar />}
+      {!isAdminpath && <Navbar />}
       <div className='min-h-[70vh]'>
         <Routes>
           <Route path='/' element={<Home/>}/>
@@ -36,7 +37,7 @@ const isOwnerPath = useLocation().pathname.includes("admin");
           </Route>
         </Routes>
       </div>
-      <Footer />
+        {!isAdminpath && <Footer />} 
     </div>
   )
 }
