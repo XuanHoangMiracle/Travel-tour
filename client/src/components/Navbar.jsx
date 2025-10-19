@@ -43,7 +43,7 @@ const Navbar = () => {
         ))}
         <button
           className="border border-white px-4 py-1 text-sm font-light rounded-full cursor-pointer hover:bg-white hover:text-amber-500 transition-all"
-          onClick={() => navigate('/owner')}
+          onClick={() => navigate('/admin')}
         >
           Dashboard
         </button>
@@ -51,7 +51,6 @@ const Navbar = () => {
 
       {/* Desktop Right */}
       <div className="hidden md:flex items-center gap-4">
-        <img src={assets.searchIcon} alt="search" className="h-7 transition-all duration-300" />
 
         {user ? (
           <UserButton>
@@ -82,7 +81,9 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`fixed top-0 left-0 w-full h-screen bg-white text-base flex flex-col md:hidden items-center justify-center gap-6 font-medium text-gray-800 transition-transform duration-500 ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}>
+      <div className={`fixed top-0 left-0 w-full h-screen bg-white text-base flex flex-col md:hidden 
+        items-center justify-center gap-6 font-medium text-gray-800 transition-transform duration-500 ${isMenuOpen ?
+         "translate-x-0" : "-translate-x-full"}`}>
         <button className="absolute top-4 right-4" onClick={() => setIsMenuOpen(false)}>
           <img src={assets.closeIcon} alt="close-menu" className="h-6" />
         </button>
