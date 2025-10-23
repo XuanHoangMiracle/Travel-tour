@@ -41,12 +41,12 @@ const Navbar = () => {
             <div className="bg-white h-0.5 w-0 group-hover:w-full transition-all duration-300" />
           </Link>
         ))}
-        <button
+        {/* <button
           className="border border-white px-4 py-1 text-sm font-light rounded-full cursor-pointer hover:bg-white hover:text-amber-500 transition-all"
           onClick={() => navigate('/admin')}
         >
           Dashboard
-        </button>
+        </button> */}
       </div>
 
       {/* Desktop Right */}
@@ -94,14 +94,14 @@ const Navbar = () => {
           </Link>
         ))}
 
-        {user && (
+        {/* {user && (
           <button
             className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all"
             onClick={() => { setIsMenuOpen(false); navigate('/admin'); }}
           >
             Dashboard
           </button>
-        )}
+        )} */}
 
         {!user && (
           <button onClick={openSignIn} className="bg-black text-white px-8 py-2.5 rounded-full transition-all duration-300">
