@@ -42,6 +42,27 @@ export const getTour = async (req, res) => {
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
+// ✅ Cập nhật tour
+export const updateTour = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name, location, guest, price, time, schedule } = req.body;
+
+        const tour = await Tour.findByIdAndUpdate(
+            id,
+            { name, location, guest, price, time, schedule },
+            { new: true, runValidators: true }
+        );
+
+        if (!tour) {
+            return res.status(404).json({ success: false, message: 'Tour không tồn tại' });
+        }
+
+        res.json({ success: true, message: 'Cập nhật tour thành công', data: tour });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Lỗi cập nhật tour', error: error.message });
+    }
+};
 //Khả dụng của tour
 export const toggleTourAvailability = async (req, res) => {
   try {

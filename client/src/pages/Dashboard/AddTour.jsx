@@ -191,7 +191,7 @@ const AddTour = () => {
                         <textarea
                             rows={3}
                             placeholder='Ngày 1: Đón khách...'
-                            className='border border-gray-300 mt-1 rounded p-2 w-full text-sm'
+                            className='border border-gray-300 mt-1 rounded min-h-32 p-2 w-full text-sm'
                             value={inputs.schedule}
                             onChange={e => setInputs(prev => ({ ...prev, schedule: e.target.value }))}
                             required
