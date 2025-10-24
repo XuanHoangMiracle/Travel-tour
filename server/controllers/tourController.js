@@ -5,28 +5,32 @@ import { v2 as cloudinary } from "cloudinary";
 export const createTour = async (req, res) => {
   try {
     const { name, location, price, guest, schedule, time, service } = req.body;
+    
     // Upload ảnh lên Cloudinary
     const uploadImages = req.files.map(async (file) => {
-        const response = await cloudinary.uploader.upload(file.path);
-        return response.secure_url;
+      const response = await cloudinary.uploader.upload(file.path);
+      return response.secure_url;
     });
     const images = await Promise.all(uploadImages);
-    await Tour.create({
-      name,
-      location,
-      images,
-      guest,
-      schedule,
-      price,
-      time,
-      service
+    
+    // Service đã là mảng rồi, không cần parse
+    await Tour.create({ 
+      name, 
+      location, 
+      images, 
+      guest: Number(guest), 
+      schedule, 
+      price: Number(price), 
+      time, 
+      service // Đã đúng format
     });
-    res.json({success:true,message:"Tạo tour thành công"})
-
+    
+    res.json({success:true, message:"Tạo tour thành công"})
   } catch (error) {
-    res.status(500).json({success:false,message:"Tạo tour thất bại",error:error.message});
+    res.status(500).json({success:false, message:"Tạo tour thất bại", error:error.message});
   }
-}    
+}
+
 
 //lấy tour
 export const getTour = async (req, res) => {

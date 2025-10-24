@@ -14,7 +14,7 @@ const Navbar = () => {
     { name: 'Home', path: '/' },
     { name: 'Tours', path: '/tours' },
     { name: 'Liên hệ', path: '/contact' },
-    { name: 'Về chúng tôi', path: '/about' },
+    { name: 'Giới Thiệu', path: '/about' },
   ];
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -4,7 +4,8 @@ import { clerkClient } from "@clerk/express";
 
 export const protect = async (req, res, next) => {
   try {
-    const userId = req.auth?.userId; // có sau khi app.use(clerkMiddleware())
+    const auth = req.auth?.();  
+    const userId = auth?.userId;
     if (!userId) {
       return res.status(401).json({ success: false, message: "Unauthorized" });
     }

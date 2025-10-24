@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext, useContext, useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser, useAuth } from "@clerk/clerk-react";
-import { toast } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
 
@@ -43,6 +43,35 @@ export const AppProvider = ({ children }) => {
         isAdmin,setIsAdmin,searchedCities,setSearchedCities
     }
   return <AppContext.Provider value={value}>
+    <Toaster 
+                position="top-center"
+                reverseOrder={false}
+                gutter={8}
+                toastOptions={{
+                    duration: 4000,
+                    style: {
+                        background: '#363636',
+                        color: '#fff',
+                        borderRadius: '8px',
+                        padding: '16px',
+                        fontSize: '14px',
+                    },
+                    success: {
+                        duration: 4000,
+                        iconTheme: {
+                            primary: '#10B981',
+                            secondary: '#fff',
+                        },
+                    },
+                    error: {
+                        duration: 4000,
+                        iconTheme: {
+                            primary: '#EF4444',
+                            secondary: '#fff',
+                        },
+                    },
+                }}
+            />
         {children}
         </AppContext.Provider>;
 };

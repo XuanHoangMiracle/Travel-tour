@@ -26,7 +26,7 @@ const RequireAdmin = ({ children }) => {
   return isAdmin ? children : <Navigate to="/" replace />;
 };
 
-// "/" → admin chuyển sang /admin, còn lại Home
+// Nếu là admin chuyển sang /admin, còn lại Home
 const RedirectRoot = () => {
   const { isAdmin } = useCtx();
   return isAdmin ? <Navigate to="/admin" replace /> : <Home />;
