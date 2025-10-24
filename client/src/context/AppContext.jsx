@@ -16,6 +16,21 @@ export const AppProvider = ({ children }) => {
 
     const [isAdmin, setIsAdmin] = useState(false);
     const [searchedCities, setSearchedCities] = useState([]);
+    const [tours, setTours] = useState([]);
+
+    //fectch tour
+    const fetchTours = async () => {
+        try {
+            const { data } = await axios.get('/api/tours');
+            if (data.success) {
+                setTours(data.data);
+            } else {
+                toast.error(data.message);
+            }
+        } catch (error) {
+            toast.error(error.message );
+        }
+    }
 
     const fetchUser = async () => {
         try {
@@ -36,11 +51,14 @@ export const AppProvider = ({ children }) => {
             fetchUser();
         }
     }, [user]);
-
+     useEffect(() => {
+        fetchTours();
+    }, []);
 
     const value ={
         currency,navigate,user,getToken,axios,
         isAdmin,setIsAdmin,searchedCities,setSearchedCities
+        ,tours,setTours,fetchTours 
     }
   return <AppContext.Provider value={value}>
     <Toaster 

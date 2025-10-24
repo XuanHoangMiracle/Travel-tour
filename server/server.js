@@ -6,6 +6,8 @@ import { clerkMiddleware } from '@clerk/express'
 import clerkWebhooks from './controllers/clerkWebhooks.js';
 import userRouter from './routes/userRoutes.js';
 import tourRouter from './routes/tourRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
+import bookingRoutes from './routes/bookingRoutes.js';
 import connectCloudinary from './configs/cloudinary.js';
 import commentRouter from './routes/commentRoutes.js';
 
@@ -26,6 +28,9 @@ app.get('/',(req, res)=> res.send("API hoạt động tốt"))
 app.use('/api/user',userRouter)
 app.use('/api/tours',tourRouter)
 app.use("/api/comments", commentRouter);
+
+app.use('/api/admin', adminRoutes);
+app.use('/api/bookings', bookingRoutes);
 
 
 const PORT = process.env.PORT || 3000;

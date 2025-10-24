@@ -88,7 +88,7 @@ const ListTour = () => {
                             <th className='py-3 px-4 text-gray-800 font-medium text-left max-lg:hidden'>Vị trí</th>
                             <th className='py-3 px-4 text-gray-800 font-medium text-left max-xl:hidden'>Thời gian</th>
                             <th className='py-3 px-4 text-gray-800 font-medium text-left max-md:hidden'>Khách</th>
-                            <th className='py-3 px-4 text-gray-800 font-medium text-left'>Giá (VNĐ)</th>
+                            <th className='py-3 px-4 text-gray-800 font-medium text-left'>Giá {currency}</th>
                             <th className='py-3 px-4 text-gray-800 font-medium text-center'>Thao tác</th>
                         </tr>
                     </thead>
