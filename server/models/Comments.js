@@ -8,9 +8,12 @@ const commentSchema = new mongoose.Schema(
       required: true,
     },
     user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User", // nếu bạn có bảng User (Clerk, JWT,...)
-      required: false, // có thể bỏ required nếu guest được phép bình luận
+      type: String, 
+      required: false,
+    },
+    username: { 
+      type: String,
+      default: 'Khách ẩn danh'
     },
     rating: {
       type: Number,

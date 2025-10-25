@@ -32,6 +32,8 @@ app.use("/api/comments", commentRouter);
 app.use('/api/admin', adminRoutes);
 app.use('/api/bookings', bookingRoutes);
 
+app.use('/api/comments', commentRouter);
+
 
 const PORT = process.env.PORT || 3000;
 

@@ -168,11 +168,15 @@ const AllTours = () => {
                                 >
                                     {tour.name}
                                 </p>
-                                <div className='flex items-center'>
-                                    <StarRating />
-                                    <p className='ml-4 text-sm text-gray-600'>200+ reviews</p>
+                                <div className='flex items-center gap-2'>
+                                    <StarRating 
+                                        rating={tour.averageRating || 5} 
+                                        reviewCount={tour.reviewCount || 0}
+                                    />
+                                    <p className='text-sm text-gray-600'>
+                                        ({tour.reviewCount || 0} đánh giá)
+                                    </p>
                                 </div>
-
                                 {/* Tour info */}
                                 <div className='flex flex-wrap items-center mt-3 mb-4 gap-3 text-sm text-gray-600'>
                                     <div className='flex items-center gap-1'>

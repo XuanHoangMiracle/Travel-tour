@@ -88,7 +88,7 @@ const ListTour = () => {
                             <th className='py-3 px-4 text-gray-800 font-medium text-left max-lg:hidden'>Vị trí</th>
                             <th className='py-3 px-4 text-gray-800 font-medium text-left max-xl:hidden'>Thời gian</th>
                             <th className='py-3 px-4 text-gray-800 font-medium text-left max-md:hidden'>Khách</th>
-                            <th className='py-3 px-4 text-gray-800 font-medium text-left'>Giá {currency}</th>
+                            <th className='py-3 px-4 text-gray-800 font-medium text-left'>Giá vnđ</th>
                             <th className='py-3 px-4 text-gray-800 font-medium text-center'>Thao tác</th>
                         </tr>
                     </thead>
@@ -104,7 +104,6 @@ const ListTour = () => {
                             tours.map((tour) => (
                                 <tr key={tour._id} className='hover:bg-gray-50'>
                                     {editingId === tour._id ? (
-                                        // ✅ Chế độ chỉnh sửa
                                         <>
                                             <td className='py-3 px-4 border-t border-gray-300'>
                                                 <input
@@ -122,7 +121,7 @@ const ListTour = () => {
                                                     className='border rounded p-1 w-full text-sm'
                                                 />
                                             </td>
-                                            {/* ✅ Edit Thời gian */}
+                                            {/* Edit Thời gian */}
                                             <td className='py-3 px-4 border-t border-gray-300 max-xl:hidden'>
                                                 <input
                                                     type='text'
@@ -150,7 +149,7 @@ const ListTour = () => {
                                             </td>
                                             <td className='py-3 px-4 border-t border-gray-300'>
                                                 <div className='flex flex-col gap-2'>
-                                                    {/* ✅ Nút chỉnh sửa lịch trình */}
+                                                    {/*chỉnh sửa lịch trình */}
                                                     <button
                                                         onClick={() => setShowDetailModal(tour._id)}
                                                         className='bg-blue-500 text-white px-2 py-1 rounded text-xs hover:bg-blue-600'
@@ -175,7 +174,7 @@ const ListTour = () => {
                                             </td>
                                         </>
                                     ) : (
-                                        // ✅ Chế độ xem
+                                        // Chế độ xem
                                         <>
                                             <td className='py-3 px-4 text-gray-700 border-t border-gray-300'>
                                                 {tour.name}
@@ -183,7 +182,7 @@ const ListTour = () => {
                                             <td className='py-3 px-4 text-gray-700 border-t border-gray-300 max-lg:hidden'>
                                                 {tour.location}
                                             </td>
-                                            {/* ✅ Hiển thị Thời gian */}
+                                            {/* Hiển thị Thời gian */}
                                             <td className='py-3 px-4 text-gray-700 border-t border-gray-300 max-xl:hidden'>
                                                 {tour.time}
                                             </td>
@@ -195,7 +194,7 @@ const ListTour = () => {
                                             </td>
                                             <td className='py-3 px-4 border-t border-gray-300'>
                                                 <div className='flex flex-col gap-2 items-center'>
-                                                    {/* ✅ Xem lịch trình */}
+                                                    {/*  Xem lịch trình */}
                                                     <button
                                                         onClick={() => setShowDetailModal(tour._id)}
                                                         className='text-blue-600 text-xs underline hover:text-blue-800'
@@ -220,7 +219,7 @@ const ListTour = () => {
                 </table>
             </div>
 
-            {/* ✅ Modal chi tiết lịch trình */}
+            {/*  Modal chi tiết lịch trình */}
             {showDetailModal && (
                 <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4'>
                     <div className='bg-white rounded-lg w-full max-w-2xl max-h-[80vh] overflow-y-auto'>
@@ -236,7 +235,7 @@ const ListTour = () => {
                         
                         <div className='p-6'>
                             {editingId === showDetailModal ? (
-                                // ✅ Edit mode trong modal
+                                //  Edit mode trong modal
                                 <div>
                                     <label className='block text-sm font-medium text-gray-700 mb-2'>
                                         Lịch trình chi tiết
@@ -250,7 +249,7 @@ const ListTour = () => {
                                     />
                                 </div>
                             ) : (
-                                // ✅ View mode
+                                //  View mode
                                 <div>
                                     <h3 className='font-semibold text-gray-800 mb-2'>Lịch trình</h3>
                                     <p className='text-gray-700 whitespace-pre-wrap'>

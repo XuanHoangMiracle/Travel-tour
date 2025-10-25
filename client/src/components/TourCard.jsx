@@ -38,7 +38,7 @@ const TourCard = ({ tour, index }) => {
                 {tour.name}  
               </h3>
               <div className="shrink-0 mt-0.5">
-                <StarRating />
+                 <StarRating rating={tour.averageRating} reviewCount={tour.reviewCount} />
               </div>
             </div>
             

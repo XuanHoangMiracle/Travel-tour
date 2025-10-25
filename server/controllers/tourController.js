@@ -75,3 +75,51 @@ export const toggleTourAvailability = async (req, res) => {
     res.status(500).json({success:false,message:"Cập nhật trạng thái tour thất bại",error:error.message});
   }
 };
+export const getTourById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const tour = await Tour.findById(id).lean();
+    
+    if (!tour) {
+      return res.status(404).json({ 
+        success: false, 
+        message: 'Tour không tồn tại' 
+      });
+    }
+
+    res.json({ success: true, data: tour });
+  } catch (error) {
+    console.error('getTourById error:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Lỗi lấy thông tin tour',
+      error: error.message 
+    });
+  }
+};
+export const deleteTour = async (req, res) => {
+    try {
+        const { id } = req.params;
+        
+        const tour = await Tour.findByIdAndDelete(id);
+        
+        if (!tour) {
+            return res.status(404).json({ 
+                success: false, 
+                message: 'Tour không tồn tại' 
+            });
+        }
+
+        res.json({ 
+            success: true, 
+            message: 'Xóa tour thành công' 
+        });
+    } catch (error) {
+        console.error('deleteTour error:', error);
+        res.status(500).json({ 
+            success: false, 
+            message: 'Lỗi xóa tour',
+            error: error.message 
+        });
+    }
+};

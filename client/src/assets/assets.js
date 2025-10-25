@@ -32,6 +32,7 @@ import tourImg2 from './Tour2.png'
 import tourImg3 from './Tour3.png'
 import tourImg4 from './Tour4.png'
 import regImage from './regImage.png'
+import halfstar from './halfstar.svg'
 import exclusiveOfferCardImg1 from "./exclusiveOfferCardImg1.png";
 import exclusiveOfferCardImg2 from "./exclusiveOfferCardImg2.png";
 import exclusiveOfferCardImg3 from "./exclusiveOfferCardImg3.png";
@@ -51,6 +52,7 @@ export const assets = {
     locationIcon,
     location,
     starIconFilled,
+    halfstar,
     arrowIcon,
     starIconOutlined,
     instagramIcon,

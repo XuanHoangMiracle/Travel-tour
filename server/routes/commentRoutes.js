@@ -1,12 +1,11 @@
-import { Router } from "express";
-import { addComment, getCommentsByTour } from "../controllers/commentController.js";
+import express from 'express';
+import { addComment, getCommentsByTour } from '../controllers/commentController.js';
+import { protect } from '../middleware/authMiddleware.js';
 
-const router = Router();
+const commentRouter = express.Router();
 
-// POST /api/comments/:tourId → thêm bình luận cho tour
-router.post("/tourId", addComment);
+commentRouter.post('/:tourId', protect, addComment);
 
-// GET /api/comments/:tourId → lấy tất cả bình luận của tour
-router.get("/tourId", getCommentsByTour);
+commentRouter.get('/tour/:tourId', getCommentsByTour);
 
-export default router;
+export default commentRouter;

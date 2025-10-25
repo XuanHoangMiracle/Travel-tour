@@ -10,10 +10,12 @@ const tourSchema = new mongoose.Schema({
   price: { type: Number, required: true, min: 0 },
   time: { type: String, required: true },          
   service: [{type: String}],
-  comment:{type: Array, default: []}        
+  comment:{type: Array, default: []}  ,
+  averageRating: { type: Number, default: 5, min: 1, max: 5 },
+  reviewCount: { type: Number, default: 0 }      
 }, { timestamps: true });
 
-// Virtual populate: 1 tour → nhiều comment
+
 tourSchema.virtual("comments", {
   ref: "Comment",
   localField: "_id",
