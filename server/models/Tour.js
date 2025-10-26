@@ -12,7 +12,11 @@ const tourSchema = new mongoose.Schema({
   service: [{type: String}],
   comment:{type: Array, default: []}  ,
   averageRating: { type: Number, default: 5, min: 1, max: 5 },
-  reviewCount: { type: Number, default: 0 }      
+  reviewCount: { type: Number, default: 0 } ,
+  embedding: {
+    type: [Number], 
+    required: false
+  }    
 }, { timestamps: true });
 
 
@@ -20,6 +24,13 @@ tourSchema.virtual("comments", {
   ref: "Comment",
   localField: "_id",
   foreignField: "tour",
+});
+// Middleware tự động tạo locationLowercase
+tourSchema.pre('save', function(next) {
+  if (this.location) {
+    this.locationLowercase = this.location.toLowerCase();
+  }
+  next();
 });
 
 const Tour = mongoose.model("Tour", tourSchema);

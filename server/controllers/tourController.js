@@ -5,8 +5,7 @@ import { v2 as cloudinary } from "cloudinary";
 export const createTour = async (req, res) => {
   try {
     const { name, location, price, guest, schedule, time, service } = req.body;
-    
-    // Upload ảnh lên Cloudinary
+
     const uploadImages = req.files.map(async (file) => {
       const response = await cloudinary.uploader.upload(file.path);
       return response.secure_url;
@@ -22,7 +21,8 @@ export const createTour = async (req, res) => {
       schedule, 
       price: Number(price), 
       time, 
-      service // Đã đúng format
+      service,
+      embedding: []
     });
     
     res.json({success:true, message:"Tạo tour thành công"})
