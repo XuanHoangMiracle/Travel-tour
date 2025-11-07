@@ -14,7 +14,6 @@ import AddTour from "./pages/Dashboard/AddTour.jsx";
 import ListTour from "./pages/Dashboard/ListTour.jsx";
 import { useAppContext } from "./context/AppContext.jsx";
 
-// Nếu bạn vẫn còn value={{value}} trong AppContext, dùng dòng dưới:
 const useCtx = () => {
   const ctx = useAppContext();
   return ctx.value ?? ctx; // hỗ trợ cả hai trường hợp
@@ -45,14 +44,12 @@ const App = () => {
           {/* Root auto-redirect theo role */}
           <Route path="/" element={<RedirectRoot />} />
 
-          {/* Routes người dùng (user/guest đều vào được) */}
           <Route path="/tours" element={<AllTours />} />
           <Route path="/tours/:id" element={<TourDetails />} />
           <Route path="/about" element={<About />} />
           <Route path="/mybookings" element={<MyBookings />} />
           <Route path="/contact" element={<Contact />} />
 
-          {/* Cụm admin (không render Layout bên ngoài nữa) */}
           <Route
             path="/admin"
             element={

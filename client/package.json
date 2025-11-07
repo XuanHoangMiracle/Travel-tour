@@ -13,6 +13,8 @@
     "@clerk/clerk-react": "^5.47.0",
     "@tailwindcss/vite": "^4.1.13",
     "axios": "^1.12.2",
+    "clsx": "^2.1.1",
+    "markdown-to-jsx": "^8.0.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-hot-toast": "^2.6.0",
