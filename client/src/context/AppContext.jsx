@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useContext, useState, useEffect, useRef } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser, useAuth } from "@clerk/clerk-react";
 import toast, { Toaster } from "react-hot-toast";
@@ -11,14 +11,13 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
     const currency = import.meta.env.VITE_CURRENCY || " vnđ";
     const navigate = useNavigate();
-    const {user} = useUser();
-    const {getToken} = useAuth();
+    const { user, isLoaded } = useUser(); // ✅ Thêm isLoaded
+    const { getToken } = useAuth();
 
     const [isAdmin, setIsAdmin] = useState(false);
     const [searchedCities, setSearchedCities] = useState([]);
     const [tours, setTours] = useState([]);
 
-    //fectch tour
     const fetchTours = async () => {
         try {
             const { data } = await axios.get('/api/tours');
@@ -28,40 +27,79 @@ export const AppProvider = ({ children }) => {
                 toast.error(data.message);
             }
         } catch (error) {
-            toast.error(error.message );
+            console.error('fetchTours error:', error);
+            toast.error(error.message);
         }
     }
 
     const fetchUser = async () => {
         try {
-           const {data} = await axios.get('/api/user', {headers: {Authorization: `Bearer ${await getToken()}`}});
-           if (data) {
-               setIsAdmin(data.role === 'admin');
-               setSearchedCities(data.searchedCities || []);
-           } else {
-               setTimeout(() => fetchUser(), 5000);
-           }
+            const { data } = await axios.get('/api/user', {
+                headers: { Authorization: `Bearer ${await getToken()}` }
+            });
+            if (data) {
+                setIsAdmin(data.role === 'admin');
+                setSearchedCities(data.searchedCities || []); // ✅ Sửa: recentSearchedCities → searchedCities
+            } else {
+                setTimeout(() => fetchUser(), 5000);
+            }
         } catch (error) {
+            console.error('fetchUser error:', error);
             toast.error(error.message);
         }
     };
 
+    // ✅ Thêm hàm lưu searched city
+    const saveSearchedCity = async (city) => {
+        try {
+            if (!user) {
+                toast.error('Vui lòng đăng nhập để lưu lịch sử tìm kiếm');
+                return;
+            }
+
+            const token = await getToken();
+            const { data } = await axios.post('/api/user/search-cities', 
+                { searchedCity: city }, // ✅ Đúng parameter name
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            
+            if (data.success) {
+                setSearchedCities(data.data);
+                return data.data;
+            } else {
+                toast.error(data.message);
+            }
+        } catch (error) {
+            console.error('saveSearchedCity error:', error);
+            toast.error('Lỗi lưu lịch sử tìm kiếm');
+        }
+    };
+
+    // ✅ Sửa: Kiểm tra isLoaded trước
     useEffect(() => {
-        if (user){
+        if (isLoaded && user) {
             fetchUser();
         }
-    }, [user]);
-     useEffect(() => {
+    }, [user, isLoaded]);
+
+    useEffect(() => {
         fetchTours();
     }, []);
 
-    const value ={
-        currency,navigate,user,getToken,axios,
-        isAdmin,setIsAdmin,searchedCities,setSearchedCities
-        ,tours,setTours,fetchTours 
+    // ✅ Thêm user, isLoaded vào value
+    const value = {
+        currency, navigate, user, getToken, axios,
+        isAdmin, setIsAdmin,
+        searchedCities, setSearchedCities,
+        tours, setTours, 
+        fetchTours,
+        saveSearchedCity,
+        isLoaded // ✅ Export
     }
-  return <AppContext.Provider value={value}>
-    <Toaster 
+
+    return (
+        <AppContext.Provider value={value}>
+            <Toaster 
                 position="top-center"
                 reverseOrder={false}
                 gutter={8}
@@ -90,8 +128,9 @@ export const AppProvider = ({ children }) => {
                     },
                 }}
             />
-        {children}
-        </AppContext.Provider>;
+            {children}
+        </AppContext.Provider>
+    );
 };
 
 export const useAppContext = () => useContext(AppContext);

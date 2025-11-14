@@ -12,7 +12,6 @@ export const createTour = async (req, res) => {
     });
     const images = await Promise.all(uploadImages);
     
-    // Service đã là mảng rồi, không cần parse
     await Tour.create({ 
       name, 
       location, 

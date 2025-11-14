@@ -1,22 +1,18 @@
-
-//Get/api/user
-
 import User from "../models/User.js";
 
 export const getUserData = async (req, res) => {
     try {
         const role = req.user.role;
-        const recentSearchedCities = req.user.recentSearchedCities;
-        res.json({ success: true, role ,recentSearchedCities})
+        const searchedCities = req.user.searchedCities; // ✅ Sửa: recentSearchedCities → searchedCities
+        res.json({ success: true, role, searchedCities }) // ✅ Return searchedCities
     } catch (error) {
-        console.log({success: false,error: error.message })
+        console.log({success: false, error: error.message })
     }
 }
 
 export const getRecentSearchedCities = async (req, res) => {
     try {
         const userId = req.user._id || req.user.id;
-        
         const user = await User.findById(userId).select('searchedCities');
         
         if (!user) {
@@ -39,11 +35,19 @@ export const getRecentSearchedCities = async (req, res) => {
     }
 };
 
-// ✅ Lưu searched cities
+// ✅ Lưu searched cities - SỬA PARAMETER
 export const saveSearchedCities = async (req, res) => {
     try {
-        const { recentSearchedCities } = req.body;
+        const { searchedCity } = req.body; // ✅ Sửa: recentSearchedCities → searchedCity (số ít)
         const userId = req.user._id || req.user.id;
+
+        // ✅ Thêm validation
+        if (!searchedCity || searchedCity.trim() === '') {
+            return res.status(400).json({
+                success: false,
+                message: 'City không được trống'
+            });
+        }
 
         const user = await User.findById(userId);
         if (!user) {
@@ -57,10 +61,13 @@ export const saveSearchedCities = async (req, res) => {
             user.searchedCities = [];
         }
 
+        // ✅ Normalize city name
+        const normalizedCity = searchedCity.trim();
+
         user.searchedCities = [
-            recentSearchedCities,
-            ...user.searchedCities.filter(city => city !== recentSearchedCities)
-        ].slice(0, 3);
+            normalizedCity,
+            ...user.searchedCities.filter(city => city !== normalizedCity)
+        ].slice(0, 5); // ✅ Tăng từ 3 lên 5
 
         await user.save();
 
