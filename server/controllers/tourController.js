@@ -41,7 +41,7 @@ export const getTour = async (req, res) => {
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
-// ✅ Cập nhật tour
+//  Cập nhật tour
 export const updateTour = async (req, res) => {
     try {
         const { id } = req.params;

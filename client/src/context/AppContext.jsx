@@ -11,7 +11,7 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
     const currency = import.meta.env.VITE_CURRENCY || " vnđ";
     const navigate = useNavigate();
-    const { user, isLoaded } = useUser(); // ✅ Thêm isLoaded
+    const { user, isLoaded } = useUser();
     const { getToken } = useAuth();
 
     const [isAdmin, setIsAdmin] = useState(false);
@@ -39,7 +39,7 @@ export const AppProvider = ({ children }) => {
             });
             if (data) {
                 setIsAdmin(data.role === 'admin');
-                setSearchedCities(data.searchedCities || []); // ✅ Sửa: recentSearchedCities → searchedCities
+                setSearchedCities(data.searchedCities || []);
             } else {
                 setTimeout(() => fetchUser(), 5000);
             }
@@ -49,7 +49,6 @@ export const AppProvider = ({ children }) => {
         }
     };
 
-    // ✅ Thêm hàm lưu searched city
     const saveSearchedCity = async (city) => {
         try {
             if (!user) {
@@ -59,7 +58,7 @@ export const AppProvider = ({ children }) => {
 
             const token = await getToken();
             const { data } = await axios.post('/api/user/search-cities', 
-                { searchedCity: city }, // ✅ Đúng parameter name
+                { searchedCity: city },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             
@@ -75,7 +74,52 @@ export const AppProvider = ({ children }) => {
         }
     };
 
-    // ✅ Sửa: Kiểm tra isLoaded trước
+    // ✅ Thêm function check availability
+    const checkAvailability = async (tourId, date) => {
+        try {
+            const { data } = await axios.get('/api/bookings/availability', {
+                params: { tourId, date }
+            });
+            
+            if (data.success) {
+                return data.data;
+            }
+            return null;
+        } catch (error) {
+            console.error('checkAvailability error:', error);
+            return null;
+        }
+    };
+
+    // ✅ Thêm function tạo booking
+    const createBooking = async (bookingData) => {
+        try {
+            if (!user) {
+                toast.error('Vui lòng đăng nhập để đặt tour');
+                return { success: false };
+            }
+
+            const token = await getToken();
+            const { data } = await axios.post('/api/bookings/create', 
+                bookingData,
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            
+            if (data.success) {
+                toast.success('Đặt tour thành công!');
+                return { success: true, data: data.data };
+            } else {
+                toast.error(data.message);
+                return { success: false, message: data.message };
+            }
+        } catch (error) {
+            console.error('createBooking error:', error);
+            const errorMsg = error.response?.data?.message || 'Lỗi đặt tour';
+            toast.error(errorMsg);
+            return { success: false, message: errorMsg };
+        }
+    };
+
     useEffect(() => {
         if (isLoaded && user) {
             fetchUser();
@@ -86,7 +130,6 @@ export const AppProvider = ({ children }) => {
         fetchTours();
     }, []);
 
-    // ✅ Thêm user, isLoaded vào value
     const value = {
         currency, navigate, user, getToken, axios,
         isAdmin, setIsAdmin,
@@ -94,7 +137,9 @@ export const AppProvider = ({ children }) => {
         tours, setTours, 
         fetchTours,
         saveSearchedCity,
-        isLoaded // ✅ Export
+        checkAvailability,  // ✅ Export
+        createBooking,      // ✅ Export
+        isLoaded
     }
 
     return (

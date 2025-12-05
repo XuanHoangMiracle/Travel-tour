@@ -3,8 +3,8 @@ import User from "../models/User.js";
 export const getUserData = async (req, res) => {
     try {
         const role = req.user.role;
-        const searchedCities = req.user.searchedCities; // ✅ Sửa: recentSearchedCities → searchedCities
-        res.json({ success: true, role, searchedCities }) // ✅ Return searchedCities
+        const searchedCities = req.user.searchedCities;
+        res.json({ success: true, role, searchedCities }) 
     } catch (error) {
         console.log({success: false, error: error.message })
     }
@@ -35,13 +35,13 @@ export const getRecentSearchedCities = async (req, res) => {
     }
 };
 
-// ✅ Lưu searched cities - SỬA PARAMETER
+// Lưu searched cities 
 export const saveSearchedCities = async (req, res) => {
     try {
-        const { searchedCity } = req.body; // ✅ Sửa: recentSearchedCities → searchedCity (số ít)
+        const { searchedCity } = req.body;
         const userId = req.user._id || req.user.id;
 
-        // ✅ Thêm validation
+        // validation
         if (!searchedCity || searchedCity.trim() === '') {
             return res.status(400).json({
                 success: false,
@@ -61,13 +61,13 @@ export const saveSearchedCities = async (req, res) => {
             user.searchedCities = [];
         }
 
-        // ✅ Normalize city name
+        //Normalize city name
         const normalizedCity = searchedCity.trim();
 
         user.searchedCities = [
             normalizedCity,
             ...user.searchedCities.filter(city => city !== normalizedCity)
-        ].slice(0, 5); // ✅ Tăng từ 3 lên 5
+        ].slice(0, 5);
 
         await user.save();
 
