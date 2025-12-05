@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useUser, useAuth } from "@clerk/clerk-react";
 import toast, { Toaster } from "react-hot-toast";
 
-axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL || "https://travelserver-oekt.onrender.com";
 
 const AppContext = createContext();
 
