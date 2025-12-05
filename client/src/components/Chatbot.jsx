@@ -39,7 +39,7 @@ const MessageContent = ({ text, isUser }) => {
 
 /* ===== Main Widget ===== */
 export default function ChatbotWidget() {
-  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "https://rag-chat-jwpj.onrender.com/";
 
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
