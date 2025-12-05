@@ -51,7 +51,7 @@ const Hero = () => {
 
     return (
         <div className='flex flex-col items-start justify-center px-6
-        md:px-16 lg:px-24 xl:px-32 text-white bg-[url("/src/assets/HeroImage.png")] 
+        md:px-16 lg:px-24 xl:px-32 text-white bg-[url("https://res.cloudinary.com/dktvpvp9b/image/upload/v1764949219/heroImage_jzewkn.png")] 
         bg-no-repeat bg-cover bg-center h-screen'> 
             <p className='bg-[#49B9FF]/50 px-3.5 py-1 rounded-full mt-20'>Trải nghiệm du lịch tuyệt vời</p>
             <h1 className='font-playfair text-2xl md:text-[56px] md:leading-[56px] font-bold md:font-extrabold max-w-xl mt-4'>
